@@ -38,6 +38,8 @@
         nerd-fonts.agave
         nerd-fonts._0xproto
         sarasa-gothic
+        iosevka
+        libertinus
       ];
 
       homebrew = {
