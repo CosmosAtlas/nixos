@@ -1,8 +1,11 @@
 darwin-switch:
-    darwin-rebuild switch
+  darwin-rebuild switch
 
 home-switch:
-    home-manager switch --flake .#cosmos@Wenhans-MacBook-Pro
+  home-manager switch --flake .#cosmos@Wenhans-MacBook-Pro
 
 home-news:
-    home-manager news --flake .#cosmos@Wenhans-MacBook-Pro
+  home-manager news --flake .#cosmos@Wenhans-MacBook-Pro
+
+clean:
+  nix-collect-garbage -d

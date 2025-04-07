@@ -34,12 +34,13 @@
       };
 
       fonts.packages = with pkgs; [
-        nerd-fonts.iosevka-term
-        nerd-fonts.agave
-        nerd-fonts._0xproto
-        sarasa-gothic
         iosevka
         libertinus
+        maple-mono.NF-CN-unhinted
+        nerd-fonts._0xproto
+        nerd-fonts.agave
+        nerd-fonts.iosevka-term
+        sarasa-gothic
       ];
 
       homebrew = {
