@@ -1,5 +1,5 @@
 darwin-switch:
-  darwin-rebuild switch
+  sudo darwin-rebuild switch
 
 home-switch:
   home-manager switch --flake .#cosmos@Wenhans-MacBook-Pro

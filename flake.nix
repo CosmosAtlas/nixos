@@ -61,6 +61,7 @@
           "jordanbaird-ice"
           "karabiner-elements"
           "kitty"
+          "readest"
           "skim"
           "slack"
           "squirrel"
@@ -74,6 +75,8 @@
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
+
+      system.primaryUser = "cosmos";
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;

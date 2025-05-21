@@ -19,9 +19,11 @@
     htop
     neovim
     pfetch
+    pandoc
+    ranger
     ripgrep
     rust-analyzer
-    tmux
+    texlive.combined.scheme-full
     universal-ctags
     uv
     zellij
@@ -31,6 +33,38 @@
 
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = true;
+
+  programs.tmux = {
+    enable = true;
+    keyMode = "vi";
+    mouse = true;
+    sensibleOnTop = true;
+    terminal = "tmux-256color";
+    shell = "${pkgs.zsh}/bin/zsh";
+    plugins = with pkgs; [
+      tmuxPlugins.yank
+      tmuxPlugins.pain-control
+      {
+        plugin=tmuxPlugins.rose-pine;
+        extraConfig = "set -g @rose_pine_variant 'moon' # Options are 'main', 'moon' or 'dawn'";
+      }
+      {
+        plugin=tmuxPlugins.fuzzback;
+        extraConfig = "set -g @fuzzback-bind s";
+      }
+    ];
+    extraConfig = ''
+      set-option -g default-command "$SHELL -l"
+
+      set -ga terminal-overrides ",xterm-256color:RGB,screen-256color,screen"
+
+      bind-key -T copy-mode-vi 'v' send -X begin-selection
+      bind -T copy-mode-vi 'y' send-keys -X copy-pipe 'xclip -in -selection clipboard'
+      bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "xclip -selection clipboard -i" \; send -X clear-selection
+
+      set-option -g renumber-windows on
+    '';
+  };
 
 
   programs.zsh = {
@@ -59,12 +93,7 @@
         "zsh-users/zsh-history-substring-search"
       ];
     };
-    initExtraFirst = ''
-      if [[ -n "$ZSH_DEBUGRC" ]]; then
-        zmodload zsh/zprof
-      fi
-    '';
-    initExtra = ''
+    initContent = ''
       colorlist() {
         for i in {0..255}; do print -Pn "%K{''$i}  %k%F{''$i}''${(l:3::0:)i}%f " ''${''${(M)$((i%6)):#3}:+''$'\n'}; done
       }
@@ -99,10 +128,6 @@
 
       # load local configs
       [[ ! -f $HOME/.zsh_local ]] || source $HOME/.zsh_local
-
-      if [[ ! -n "$ZSH_DEBUGRC" ]]; then
-        pfetch
-      fi
 
       if [[ -n "$ZSH_DEBUGRC" ]]; then
         zprof
