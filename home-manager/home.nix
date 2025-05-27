@@ -12,6 +12,7 @@
     bat
     btop
     delta
+    devenv
     duf
     fd
     fzf
@@ -137,4 +138,8 @@
 
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
+
+  programs.direnv.enable = true;
+  programs.direnv.enableZshIntegration = true;
+  programs.direnv.nix-direnv.enable = true;
 }
