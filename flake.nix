@@ -51,8 +51,8 @@
           upgrade = true;
         };
         casks = [
-          "docker"
-          "emacs"
+          "docker-desktop"
+          "emacs-app"
           "espanso"
           "ghostty"
           "google-chrome"
@@ -64,8 +64,9 @@
           "readest"
           "skim"
           "slack"
-          "squirrel"
-          "syncthing"
+          "squirrel-app"
+          "syncthing-app"
+          "tailscale-app"
           "visual-studio-code"
           "wechat"
           "xbar"

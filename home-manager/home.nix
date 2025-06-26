@@ -13,17 +13,21 @@
     btop
     delta
     devenv
+    dua
     duf
     fd
     fzf
+    ghostscript
     helix
     htop
+    imagemagick
     neovim
-    pfetch
     pandoc
+    pfetch
     ranger
     ripgrep
     rust-analyzer
+    stow
     texlive.combined.scheme-full
     universal-ctags
     uv
