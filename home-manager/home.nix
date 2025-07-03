@@ -26,6 +26,7 @@
     pfetch
     ranger
     ripgrep
+    ruff
     rust-analyzer
     stow
     texlive.combined.scheme-full

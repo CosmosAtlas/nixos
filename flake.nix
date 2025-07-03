@@ -22,7 +22,7 @@
       [
         pkgs.git
         pkgs.home-manager
-        pkgs.vim
+        pkgs.vim_configurable
         pkgs.just
       ];
 
@@ -67,6 +67,7 @@
           "squirrel-app"
           "syncthing-app"
           "tailscale-app"
+          "telegram"
           "visual-studio-code"
           "wechat"
           "xbar"
