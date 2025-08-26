@@ -33,6 +33,7 @@
         };
       };
 
+
       fonts.packages = with pkgs; [
         iosevka
         libertinus
@@ -57,10 +58,12 @@
           "ghostty"
           "google-chrome"
           "hammerspoon"
+          "iina"
           "iterm2"
           "jordanbaird-ice"
           "karabiner-elements"
           "kitty"
+          "orion"
           "readest"
           "skim"
           "slack"
@@ -68,6 +71,7 @@
           "syncthing-app"
           "tailscale-app"
           "telegram"
+          "utm"
           "visual-studio-code"
           "wechat"
           "xbar"
@@ -77,6 +81,10 @@
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
+      nix.settings.trusted-users = [
+        "root"
+        "cosmos"
+      ];
 
       system.primaryUser = "cosmos";
 
@@ -92,8 +100,11 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.config.allowUnfree = true;
 
     };
+    system = "aarch64-darwin";
+    pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
   in
   {
     # Build darwin flake using:
@@ -101,13 +112,13 @@
     darwinConfigurations."Wenhans-MacBook-Pro" = darwin.lib.darwinSystem {
       specialArgs = inputs;
       modules = [
-        configuration 
+        configuration
       ];
     };
 
     homeConfigurations = {
       "cosmos@Wenhans-MacBook-Pro" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        pkgs = pkgs;
         extraSpecialArgs = {inherit inputs;};
         modules = [./home-manager/home.nix];
       };

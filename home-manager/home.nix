@@ -11,6 +11,7 @@
   home.packages = with pkgs; [
     bat
     btop
+    claude-code
     delta
     devenv
     dua
@@ -32,6 +33,7 @@
     texlive.combined.scheme-full
     universal-ctags
     uv
+    yazi
     zellij
   ];
 
@@ -42,6 +44,7 @@
 
   programs.tmux = {
     enable = true;
+    escapeTime = 0;
     keyMode = "vi";
     mouse = true;
     sensibleOnTop = true;
