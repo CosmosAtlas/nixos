@@ -22,6 +22,7 @@
     helix
     htop
     imagemagick
+    lazygit
     neovim
     pandoc
     pfetch
