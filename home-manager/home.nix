@@ -6,7 +6,7 @@
   home.username = "cosmos";
   home.homeDirectory = "/Users/cosmos";
 
-  home.sessionVariables.EDITOR = "vim";
+  home.sessionVariables.EDITOR = "nvim";
 
   home.packages = with pkgs; [
     bat
@@ -16,6 +16,7 @@
     devenv
     dua
     duf
+    epub-thumbnailer
     fd
     fzf
     ghostscript
@@ -23,6 +24,8 @@
     htop
     imagemagick
     lazygit
+    lsd
+    mediainfo
     neovim
     pandoc
     pfetch
@@ -35,6 +38,7 @@
     universal-ctags
     uv
     yazi
+    yt-dlp
     zellij
   ];
 
@@ -127,6 +131,23 @@
       # uv setup
       eval "$(uv generate-shell-completion zsh)"
       eval "$(uvx --generate-shell-completion zsh)"
+
+      # fix for uv autocomplete
+      _uv_run_mod() {
+        if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
+          # Check if any previous argument after 'run' ends with .py
+          if [[ ''${words[3,$((CURRENT-1))]} =~ ".*\.py" ]]; then
+            # Already have a .py file, complete any files
+            _arguments '*:filename:_files'
+          else
+            # No .py file yet, complete only .py files
+            _arguments '*:filename:_files -g "*.py"'
+          fi
+        else
+            _uv "$@"
+        fi
+      }
+      compdef _uv_run_mod uv
 
       pyenv() {
         if [ "$1" = "version-name" ]; then
