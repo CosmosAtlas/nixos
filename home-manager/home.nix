@@ -98,7 +98,7 @@
 
       set -ga terminal-overrides ",xterm-256color:RGB,screen-256color,screen"
 
-      bind t choose-tree -t
+      bind t choose-tree -s
 
       bind-key -T copy-mode-vi 'v' send -X begin-selection
       bind -T copy-mode-vi 'y' send-keys -X copy-pipe 'xclip -in -selection clipboard'
