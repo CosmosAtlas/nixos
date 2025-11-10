@@ -12,7 +12,6 @@
     bat
     btop
     claude-code
-    delta
     devenv
     dua
     duf
@@ -43,7 +42,34 @@
   ];
 
   programs.home-manager.enable = true;
+  programs.jujutsu.enable = true;
 
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        email = "wzhu.cosmos@gmail.com";
+        name = "Wenhan Zhu (Cosmos)";
+      };
+      init = {
+        "defaultBranch" = "master";
+      };
+    };
+    ignores = [
+      "*~"
+      "*.swp"
+      ".jj/"
+      ".DS_Store"
+    ];
+  };
+
+  programs.difftastic = {
+    enable = true;
+    git.enable = true;
+    options = {
+      background = "dark";
+    };
+  };
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = true;
 
@@ -71,6 +97,8 @@
       set-option -g default-command "$SHELL -l"
 
       set -ga terminal-overrides ",xterm-256color:RGB,screen-256color,screen"
+
+      bind t choose-tree -t
 
       bind-key -T copy-mode-vi 'v' send -X begin-selection
       bind -T copy-mode-vi 'y' send-keys -X copy-pipe 'xclip -in -selection clipboard'

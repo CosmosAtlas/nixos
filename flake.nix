@@ -22,7 +22,7 @@
       [
         pkgs.git
         pkgs.home-manager
-        pkgs.vim_configurable
+        pkgs.vim-full
         pkgs.just
       ];
 
@@ -51,6 +51,8 @@
           cleanup = "uninstall";
           upgrade = true;
         };
+        brews = [
+        ];
         casks = [
           "docker-desktop"
           "emacs-app"
@@ -59,10 +61,8 @@
           "google-chrome"
           "hammerspoon"
           "iina"
-          "iterm2"
           "jordanbaird-ice"
           "karabiner-elements"
-          "kitty"
           "orion"
           "readest"
           "skim"
